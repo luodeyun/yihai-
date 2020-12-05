@@ -1,12 +1,10 @@
 <template>
   <div class="home">
-   
-
-      <van-swipe class="my-swipe" :autoplay="2000" indicator-color="orange">
-  <van-swipe-item><img class="imgsheet" src="http://localhost:3000/img/rBUFH16mp8qACkVoAAHZSiwngI4797.jpg" alt=""> </van-swipe-item>
-  <van-swipe-item><img class="imgsheet" src="http://localhost:3000/img/rBUFH16mp8qACkVoAAHZSiwngI4797.jpg" alt=""></van-swipe-item>
-  <van-swipe-item><img class="imgsheet" src="http://localhost:3000/img/rBUFH16mp8qACkVoAAHZSiwngI4797.jpg" alt=""></van-swipe-item>
-  <van-swipe-item><img class="imgsheet" src="http://localhost:3000/img/rBUFH16mp8qACkVoAAHZSiwngI4797.jpg" alt=""> </van-swipe-item>
+      <van-swipe class="my-swipe" :autoplay="2000"  style="height: 200px;" indicator-color="orange" >
+  <van-swipe-item ><img class="imgsheet" v-if=' swiperimg[0]' :src="`http://localhost:3000/img/${swiperimg[0]}.jpg`" alt=""> </van-swipe-item>
+  <van-swipe-item><img class="imgsheet"  :src="`http://localhost:3000/img/${swiperimg[1]}.jpg`" alt=""></van-swipe-item>
+  <van-swipe-item><img class="imgsheet"  :src="`http://localhost:3000/img/${swiperimg[2]}.jpg`" alt=""></van-swipe-item>
+  <van-swipe-item><img class="imgsheet"  :src="`http://localhost:3000/img/${swiperimg[3]}.jpg`" alt=""> </van-swipe-item>
 </van-swipe>
   </div>
 </template>
@@ -16,21 +14,21 @@ export default {
   name: "Home",
   data() {
     return {
-      active: "1"
+      active: "1",
+     swiperimg:[]
     };
   },
   mounted() {
+   
     getimg().then(res=>{
-      console.log(res);
-    })
-  },
+      console.log(res)
+      res.forEach((item,index)=>{
+        this.swiperimg[index]=item.ImageName
+      })
+    console.log(this.swiperimg);
+    
+  })},
   methods: {
-    reqimg() {
-      getimg().then(res => {
-       console.log(res);
-
-      });
-    }
   }
 };
 </script>
@@ -40,10 +38,10 @@ export default {
   font-size: 20px;
   line-height: 150px;
   text-align: center;
-  background-color: #39a9ed;
+  background-color: #ffffff;
 }
-.imgsheet{
-  width:360px;
-  height: 150px;
+.imgsheet {
+  width: 360px;
+  height: 200px;
 }
 </style>

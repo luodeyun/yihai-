@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    
+    <div class='iconfont icon-zijiayoutuijian'>111111</div>
     <router-view></router-view>
    <van-tabbar v-model="active" active-color="#F08200" inactive-color="#000" fixed>
       <van-tabbar-item icon="home-o" name='1'>主页</van-tabbar-item>
@@ -8,6 +8,7 @@
       <van-tabbar-item class='iconfont icon-fuwupingjia-kefu' name='3'>客服</van-tabbar-item>
       <van-tabbar-item class='iconfont icon-wode' name='4'>我的</van-tabbar-item>
     </van-tabbar>
+
   </div>
 </template>
 <script>
@@ -29,4 +30,5 @@ export default {
 </script>
 
 <style lang="less">
+
 </style>

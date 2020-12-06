@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-   <van-tabbar v-model="active" active-color="#F08200" inactive-color="#000" fixed>
+    <div class='tab_bar'><router-view></router-view></div>
+   <van-tabbar v-model="active" active-color="#F08200" inactive-color="#000" fixed >
       <van-tabbar-item icon="home-o" name='1'>主页</van-tabbar-item>
       <van-tabbar-item icon='logistics' name='2'>自驾游</van-tabbar-item>
       <van-tabbar-item icon='service-o' name='3'>客服</van-tabbar-item>
@@ -28,5 +28,8 @@ export default {
 </script>
 
 <style lang="less">
+.tab_bar{
 
+  margin-bottom:50px 
+}
 </style>

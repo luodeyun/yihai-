@@ -25,7 +25,7 @@
       if(newval==2)this.$router.push('/Main/roadtrip')
       else if(newval==3)this.$router.push('/Main/customer')
       else if(newval==4){this.$router.push('/Main/mine')}
- else{this.$router.push('/')}
+      else{this.$router.push('/')}
     }
   },
      }

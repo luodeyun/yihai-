@@ -1,12 +1,10 @@
 <template>
   <div class="home" >
      <transition name="fade" >
-  
           <van-search v-if='searchTf' v-model="searchvalue" placeholder="请输入您想要查找的车型品牌"  class='topBarSearch'  left   background="#000000" :label='wuhan'/>
-     
      </transition>
     <van-button  type='default' round class='searchbtn' v-if='!searchTf'><van-icon name="search" class='searchIcon'/><span>搜索</span></van-button>
-   <van-swipe class="my-swipe" :autoplay="2000"  style="height: 150px;" indicator-color="orange" >
+   <van-swipe class="my-swipe" :autoplay="2000"   indicator-color="orange" >
        <van-swipe-item  v-for='(item,index) of swiperimg' :key ='index'><img class="imgsheet" v-if=' swiperimg[0]' :src="`http://localhost:3000/img/${item}.jpg`" alt=""> </van-swipe-item>   
    </van-swipe>
     <home-main1></home-main1>
@@ -48,19 +46,17 @@ export default {
   }
 };
 </script>
-<style scoped>
+ <style lang="less" scoped>
+/*轮播图样式*/
 .my-swipe .van-swipe-item {
   position: relative;
-  color: #fff;
   font-size: 20px;
-  line-height: 150px;
-  text-align: center;
-  background-color: #ffffff;
 }
 .imgsheet {
-  width: 360px;
-  height: 150px;
+  width: 100vw;
+  height: 24vh;
 }
+//搜索栏
 .topBarSearch {
   position: fixed;
   top: 0;
@@ -68,7 +64,7 @@ export default {
   float: right;
   padding: 0;
   width: 100%;
-  height: 30px;
+  height: (30/375 * 100) vh;
   z-index: 999;
 }
 .fade-enter-active,
@@ -80,6 +76,7 @@ export default {
   transform: translateX(360px);
   opacity: 0;
 }
+//搜索按钮
 .searchbtn {
   height: 30px;
   width: 70px;
@@ -93,16 +90,16 @@ export default {
   z-index: 999;
   color: #fff;
   background: rgba(0, 0, 0, 0.493);
-}
-.searchIcon {
-  font-size: 16px;
-  margin: 5px;
-  float: left;
-  height: 100%;
-  margin: 0 auto;
-  display: inline-block;
-}
-.searchbtn span {
-  float: left;
+  .searchIcon {
+    font-size: 16px;
+    margin: 5px;
+    float: left;
+    height: 100%;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  .searchbtn span {
+    float: left;
+  }
 }
 </style>

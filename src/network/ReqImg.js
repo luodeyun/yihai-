@@ -5,3 +5,8 @@ export function getimg(){
         
     })
 }
+export function getyj(){
+    return request({
+        url:'youji'
+    })
+}

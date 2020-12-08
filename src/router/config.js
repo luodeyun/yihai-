@@ -12,7 +12,17 @@ export default {
             {
                 path: 'home',
                 name: 'home',
-                component: () => import('@/views/Home.vue')
+                component: () => import('@/views/Home.vue'),
+                children:[{
+                    path:'sea',
+                    name:'sea',
+                    component:()=>import('@/components/sea/sea.vue')
+                },
+                {
+                    path:'homemain',
+                    name:'homemain',
+                    component:()=>import('@/components/home/homeMain')
+                }]
             },
             {
                 path: 'roadtrip',
@@ -32,8 +42,7 @@ export default {
         {
             path:'/election',
             name:'election',
-            component:()=>import('@/components/electioncity')
-        }
-       
+          
+        },      
     ]
 }

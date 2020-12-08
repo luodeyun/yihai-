@@ -1,31 +1,44 @@
 <template>
  <div class='homeMain'>
-         <div class='homeMaincenter'>   
-            <div class='daohang'>  
-               <router-link to='/main/mine' class='chinacar' style='background: #fff ;color:#000'>国内租车</router-link>
-               <router-link to='/main/mine' class='chinacar'>高端专车</router-link>
+      <div>
+           <div class='daohang' @click='changesty'>  
+               <router-link to='/main/home/homemain'  class='chinacar' style='color:#000;backgroundColor:#fff; borderRadius:5px 5px 5px 5px' ref>国内租车</router-link>
+               <router-link to='/main/mine'  class='chinacar'>高端专车</router-link>
                <router-link to='/main/mine'  class="chinacar">超值套餐</router-link>
-               <router-link to='/main/mine' class='chinacar'>海外租车</router-link>
-             </div> 
-            <div  class='election'>
-                <span>
-                     <van-badge dot  color='#FFCA28'></van-badge>
-                     选择城市或景点</span>
-                <span>异地还车</span>
-            </div>
-         <button @click='dianwo'>dianwo</button> 
-        </div>
-           
+               <router-link to='/main/home/sea'  class="chinacar" ref='ss'>海外租车</router-link>
+         </div> 
+         <router-view ></router-view>
+      </div>
     </div>
 </template>;
 <script>
+import homeMain from './homeMain'
 export default {
-  components: {},
-  methods: {
-    dianwo() {
-      this.$router.push("/election");
+  components: {
+    homeMain
+  },
+  mounted() {
+    this.$router.push('/main/home/homemain')
+  },
+  methods:{
+    changesty(e){
+     for (var i =0;i<=4;i++){
+      if(e.target.innerHTML=='国内租车'){
+         e.target.parentNode.children[3].style='';         
+          e.target.style.color='#000'
+          e.target.style.backgroundColor='#fff'
+          e.target.style.borderRadius='5px 5px 5px 5px'
+          
+     }else if(e.target.innerHTML=='海外租车'){
+          e.target.parentNode.children[0].style='';
+          e.target.style.color='#000'
+          e.target.style.backgroundColor='#fff'
+          e.target.style.borderRadius='5px 5px 5px 5px'
+     }
+     }   
     }
   }
+  
 };
 </script>
  <style scoped lang='less'>
@@ -33,44 +46,50 @@ export default {
 .homeMain {
   position: absolute;
   left: 0;
-  top: (130/667 * 100) vh;
-  padding: 0;
-  margin: 0;
-  left: 0;
-  right: 0;
-  /* background-color: #bfa; */
+  top:150px;
+
+  
+  //  background-color: #bfa; 
   height: 1000px;
-  width: 100%;
-  .homeMaincenter {
-    transform: translateX(10px);
-    width: 95vw;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+
+}
+.daohang {
     border-radius: 5px;
-    .daohang {
-      border-radius: 5px;
-      height: (30/667*100)vh;
-      width: 95vw;
-      background: rgba(0, 0, 0, 0.5);
-      .chinacar {
-           display: inline-block;
-           color: #fff;
-           width: 20%;
-           height: 30px;
-           margin-right: 17px;
-           font-size: 12px;
-           text-align: center;
-           line-height: 30px;
-           border-radius: 5px;
-           }
+    width: 95vw;
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    .chinacar {
+      display: inline-block;
+      color: #fff;
+      height: 22px;
+      padding:4px;
+      line-height:22px;
+      font-size: 12px; 
+      
     }
   }
-}
-
-
- .homeMain   .homeMaincenter .election {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  font-size: 12px;
-  color: #6683b5;
-}
+.changesty{
+  
+  background: #fff ;color:#000}
+  // .zuihou{
+  //     display: inline-block;
+  //     color: #fff;
+  //     width: 20%;
+  //     height: 30px;
+  //     padding: 0;
+  //     margin-left: 0;
+  //     font-size: 12px;
+  //     text-align: center;
+  //     line-height: 30px;
+  //     border-radius: 5px;
+  // }
+ 
 </style>

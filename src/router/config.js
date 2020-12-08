@@ -42,7 +42,14 @@ export default {
         {
             path:'/election',
             name:'election',
+            component:()=>import('@/components/electioncity/electioncity')
           
-        },      
+        },  
+        {
+            path:'/login',
+            name:'login',
+            component:()=>import('@/views/login')
+        }
+
     ]
 }

@@ -1,43 +1,122 @@
 <template>
-    <div id = 'login'>
-    <van-cell @touchstart.native.stop="show = true" >
-        <van-field v-model="tel" type="tel" label="手机号" />
-        <van-field v-model="number" type="number" label="账户" />        
-        <van-field v-model="password" type="password" label="密码" />
-    </van-cell>
-<van-number-keyboard
-  :show="show"
-  @blur="show = false"
-  @input="onInput"
-  @delete="onDelete"
-/>
-     </div>
-</template>;
+  <div class="container" >
+  <van-nav-bar style="background-color: #FB5430;">	
+			<template #left>
+				<van-icon  color="white" name="arrow-left" />
+			</template>	
+			<template #title>
+				<span style="color: white;">登录</span>
+			</template>
+		
+		</van-nav-bar>
+    	<div class='imgsty'>
+        <img src="@/assets/img/yihailog.png" class='img1' alt="">
+       
+      </div>
+    <div class="content" >
+      <van-field
+        label='手   机   号 '
+        name='username'
+        v-model="username"
+        placeholder="请输入手机号"
+        clearable
+        :error-message="usernamemsg"
+      />
+      <van-field
+        label = '密    码'
+        v-model="password"
+        name='password'
+        type="password"
+        clearable
+        placeholder="请输入密码"     
+      /> 
+      <van-field
+        label = '验证码'
+        v-model="code"
+        name='code'
+        center
+        clearable
+        placeholder="请输入验证码"
+      >
+     
+        <van-button slot="button"  @click='captcha' style='width:80px' ><div v-html='svg' style='height:60px,width:50px'>{{svg}}</div></van-button>
+      </van-field>
+ <div style="margin:0 2vw;margin-top:8vw">
+		    <van-button  round block color='#FB5430' type="info" native-type="submit" @click='signup'>
+		      登录
+		    </van-button>
+		  </div>
+    </div>
+ 
+  </div>
+</template>
 
 <script>
+import {login ,signdown} from '@/network/ReqLogin.js'
 export default {
-  components: {},
-  data() {
+  data () {
     return {
-      tel: "",
-      text: "",
-      digit: "",
-      number: "",
-      password: "",
-      show: true,
+      username: '',
+      password: '',
+      code: '',
+      svg:''
     }
   },
-    methods: {
-    onInput(value) {
-        this.tel+=value
-        
-     
-    },
-    onDelete() {
-      this
-    },
+  mounted () {
+       login().then((res)=>{
+        this.svg=res
+      })
   },
-};
+  methods:{
+    captcha(){
+      login().then((res)=>{
+        this.svg=res
+      })
+    },
+    signup(){
+            let username=this.username 
+            let password=this.password 
+            let code=this.code 
+             
+         signdown(username,password,code).then((res)=>{
+         console.log(res);  
+    })
+    }
+  },
+  computed: {
+    usernamemsg () {
+      if (this.username === '') {
+        return ''
+      } else if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.username)) {
+        return '手机号码格式错误'
+      } else {
+        return ''
+      }
+    }
+  }
+}
 </script>
- <style>
+<style scoped lang='less'>
+#pgn{
+  width:60px   !important;
+  height:60px !important
+}
+.contianer{
+  width:100vw;
+  height:100vh;
+
+
+}
+.imgsty{
+  width:100vw;
+  height:130px;
+  overflow: hidden;
+ img{
+   margin-top:7.5vh;
+   margin-left:30vw;  
+   
+
+ }
+}
+
 </style>

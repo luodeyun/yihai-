@@ -3,7 +3,7 @@
    <transition name="fade" >
           <van-search v-if='searchTf' v-model="searchvalue" placeholder="请输入您想要查找的车型品牌"  class='topBarSearch'  left   background="#000000" :label='wuhan'/>
      </transition>
-    <van-button  type='default' round class='searchbtn' v-if='!searchTf'><van-icon name="search" class='searchIcon'/><span>搜索</span></van-button>
+    <van-button  type='default' round class='searchbtn' v-if='!searchTf'><van-icon name="search" class='searchIcon'/><span id='sear'>搜索</span></van-button>
    <van-swipe class="my-swipe" :autoplay="2000"   indicator-color="orange" >
        <van-swipe-item  v-for='(item,index) of swiperimg' :key ='index'><img class="imgsheet" v-if=' swiperimg[0]' :src="`http://localhost:3000/img/${item}.jpg`" alt=""> </van-swipe-item>   
    </van-swipe>
@@ -83,16 +83,19 @@ export default {
   color: #fff;
   background: rgba(0, 0, 0, 0.493);
   .searchIcon {
-   
     font-size: 16px;
-    margin: 5px;
-  
     height: 100%;
     margin: 0 auto;
     display: inline-block;
+
   }
   .searchbtn span {
     float: left;
   }
 }
+ #sear{
+  
+   margin-bottom: 3px;
+   vertical-align: center;
+  }
 </style>

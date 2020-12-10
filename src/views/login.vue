@@ -53,88 +53,84 @@
         <van-notify id="van-notify"  />
 		  </div>
     </div>
- 
   </div>
 </template>
-
 <script>
-import {login ,signdown} from '@/network/ReqLogin.js'
+import { login, signdown } from "@/network/ReqLogin.js";
 export default {
-  data () {
+  data() {
     return {
-      username: '',
-      password: '',
-      code: '',
-      username1:'ss',
-      svg:'',
-      loginbtn:true,  //  登录按钮
-    }
+      username: "",
+      password: "",
+      code: "",
+      username1: "ss",
+      svg: "",
+      loginbtn: true //  登录按钮
+    };
   },
-  mounted () {
-       login().then((res)=>{
-        this.svg=res
-      })
+  mounted() {
+    login().then(res => {
+      this.svg = res;
+    });
   },
-  methods:{
-    captcha(){
-      login().then((res)=>{
-        this.svg=res
-      })
+  methods: {
+    captcha() {
+      login().then(res => {
+        this.svg = res;
+      });
     },
-    signup(){
-      console.log('1');
-      
-             
-            let username=this.username 
-            let password=this.password 
-            let code=this.code 
-         signdown(username,password,code).then((res)=>{
-           if(res=='登录成功'){
-          this.$router.push('/main/mine');
-          
-           this.$notify({ type: 'success', message: '欢迎你来到一嗨租车' });
-            }
-    })
+    signup() {
+      let username = this.username;
+      let password = this.password;
+      let code = this.code;
+      signdown(username, password, code).then(res => {
+        if (res == "登录成功") {
+          this.$router.push("/main/home");
+          this.$notify({ type: "success", message: "欢迎您来到一嗨租车" });
+        }else if(res=='验证码不正确'){
+          this.code=''
+          this.$notify({type:'danger',message:'验证码错误，请重新输入'})
+        }
+      });
     },
-    filedPassword(){  
-       if(this.password!==''&&this.username1==''){        
-       return this.loginbtn=false
-       }else{
-          this.loginbtn=true   
-       }
+    filedPassword() {
+      if (this.password !== "" && this.username1 == "") {
+        return (this.loginbtn = false);
+      } else {
+        this.loginbtn = true;
+      }
     }
   },
   computed: {
-    usernamemsg () {
-      if (this.username === '') {
-        return ''
+    usernamemsg() {
+      if (this.username === "") {
+        return "";
       } else if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.username)) {
-        return '手机号码格式错误'
+        return "手机号码格式错误";
       } else {
-        this.username1=''
-        return ' '
+        this.username1 = "";
+        return " ";
       }
     }
   }
-}
+};
 </script>
 <style scoped lang='less'>
-#pgn{
-  width:60px   !important;
-  height:60px !important
+#pgn {
+  width: 60px !important;
+  height: 60px !important;
 }
-.contianer{
-  width:100vw;
-  height:100vh;
+.contianer {
+  width: 100vw;
+  height: 100vh;
 }
-.imgsty{
-  width:100vw;
-  height:130px;
+.imgsty {
+  width: 100vw;
+  height: 130px;
   overflow: hidden;
- img{
-   margin-top:7.5vh;
-   margin-left:30vw;   
- }
+  img {
+    margin-top: 7.5vh;
+    margin-left: 30vw;
+  }
 }
-
 </style>

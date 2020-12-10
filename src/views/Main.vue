@@ -12,25 +12,22 @@
      </div>
 </template>
 <script>
-import {mapState} from '@/store/index'
+import {mapState} from 'vuex'
  export default {
   components: {},
   data() {
     return {
-   
+      active:'1'
     };
-  },
-  computed:{
-    ...mapState[active]
-  },
+  }, 
   watch: {
-    active(newval) {
+    active(newval) {  
       if (newval == 2) this.$router.push("/Main/roadtrip");
       else if (newval == 3) this.$router.push("/Main/customer");
       else if (newval == 4) {
         this.$router.push("/Main/mine");
       } else {
-        this.$router.push("/");
+        this.$router.push("/main/home");
       }
     }
   }

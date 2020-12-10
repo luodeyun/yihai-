@@ -1,5 +1,8 @@
 <template>
   <div class="container" >
+    		
+<!-- 在页面内添加对应的节点 -->
+<van-notify id="van-notify" />
   <van-nav-bar style="background-color: #FB5430;">	
 			<template #left>
 				<van-icon  color="white" name="arrow-left" />
@@ -7,11 +10,10 @@
 			<template #title>
 				<span style="color: white;">登录</span>
 			</template>
-		
+
 		</van-nav-bar>
     	<div class='imgsty'>
         <img src="@/assets/img/yihailog.png" class='img1' alt="">
-       
       </div>
     <div class="content" >
       <van-field
@@ -21,6 +23,7 @@
         placeholder="请输入手机号"
         clearable
         :error-message="usernamemsg"
+         @blur='filedPassword'
       />
       <van-field
         label = '密    码'
@@ -29,6 +32,7 @@
         type="password"
         clearable
         placeholder="请输入密码"     
+        @blur='filedPassword'
       /> 
       <van-field
         label = '验证码'
@@ -37,14 +41,16 @@
         center
         clearable
         placeholder="请输入验证码"
+        @blur='filedPassword'
       >
-     
-        <van-button slot="button"  @click='captcha' style='width:80px' ><div v-html='svg' style='height:60px,width:50px'>{{svg}}</div></van-button>
-      </van-field>
- <div style="margin:0 2vw;margin-top:8vw">
-		    <van-button  round block color='#FB5430' type="info" native-type="submit" @click='signup'>
+        <van-toast id="van-toast" />
+            <van-button slot="button"  @click.native.prevent='captcha' style='width:80px' ><div v-html='svg' style='height:60px,width:50px'>{{svg}}</div></van-button>
+        </van-field>
+       <div style="margin:0 2vw;margin-top:8vw">
+		    <van-button  round block color='#FB5430' type="info" native-type="submit" @click='signup' :disabled='false'>
 		      登录
 		    </van-button>
+        <van-notify id="van-notify"  />
 		  </div>
     </div>
  
@@ -59,7 +65,9 @@ export default {
       username: '',
       password: '',
       code: '',
-      svg:''
+      username1:'ss',
+      svg:'',
+      loginbtn:true,  //  登录按钮
     }
   },
   mounted () {
@@ -74,13 +82,26 @@ export default {
       })
     },
     signup(){
+      console.log('1');
+      
+             
             let username=this.username 
             let password=this.password 
             let code=this.code 
-             
          signdown(username,password,code).then((res)=>{
-         console.log(res);  
+           if(res=='登录成功'){
+          this.$router.push('/main/mine');
+          
+           this.$notify({ type: 'success', message: '欢迎你来到一嗨租车' });
+            }
     })
+    },
+    filedPassword(){  
+       if(this.password!==''&&this.username1==''){        
+       return this.loginbtn=false
+       }else{
+          this.loginbtn=true   
+       }
     }
   },
   computed: {
@@ -90,7 +111,8 @@ export default {
       } else if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.username)) {
         return '手机号码格式错误'
       } else {
-        return ''
+        this.username1=''
+        return ' '
       }
     }
   }
@@ -104,8 +126,6 @@ export default {
 .contianer{
   width:100vw;
   height:100vh;
-
-
 }
 .imgsty{
   width:100vw;
@@ -113,9 +133,7 @@ export default {
   overflow: hidden;
  img{
    margin-top:7.5vh;
-   margin-left:30vw;  
-   
-
+   margin-left:30vw;   
  }
 }
 

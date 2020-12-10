@@ -2,7 +2,7 @@ export default {
     routes: [
         {
             path:'/',
-           redirect: '/main/home'
+           redirect: '/login'
         },
         {
            path:'/main',

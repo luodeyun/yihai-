@@ -43,9 +43,12 @@ export default {
 };
 </script>
  <style scoped lang='less'>
+ #homeswpier{
+   width:99vw;
+ }
 .imgsheet {
    //轮播图图片大小样式
-  width: 100vw;
+  width: 98vw;
   height: 24vh;
 }
 //搜索栏

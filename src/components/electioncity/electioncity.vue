@@ -1,7 +1,7 @@
 <template>
     <div id = 'app' >
        <div class='iconHeader'>
-            <van-icon name="arrow-left" class='arrow-left' /> 
+            <van-icon name="arrow-left" class='arrow-left' @click='goback' /> 
             <van-search  v-model="searchvalue" placeholder="搜索城市或景点"     class="icon"  background="#bfa" />
         </div>
        
@@ -53,6 +53,11 @@ export default {
       indexList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10,1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       searchvalue: ""
     };
+  },
+  methods: {
+      goback(){
+          this.$router.go(-1)
+      }
   }
 };
 </script>

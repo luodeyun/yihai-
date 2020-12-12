@@ -1,22 +1,42 @@
 <template>
     <div id = 'details'>
-       <div class='details-header' style='overflow:hidden'>
+        <div v-for='item of arr' :key='item.id'>
+       <div class='details-header' >
           <img src="@/assets/img/face.png" alt="" class='details-header-img'>
           <span class='details-header-title'>
               <div class='title-head'>大熊</div>
-              <div class='title-time'>2020-00-12</div>
+              <div class='title-time'>{{item.timeTips}}</div>
           </span>
        </div>
        <div class='details-contain'>
-           <img src="" alt="" style='borderRadius:5px' class='details-contain-img' >
-        <p  class='details-contain-content'>1s544444444444444444444444444444444444444444444444444444444</p> 
-        </div> 
+           <img :src="`http://localhost:3000/discover/${item.imgUrl}.jpg`" alt="" style='borderRadius:5px' class='details-contain-img' >
+        <p  class='details-contain-content'>{{item.content}}</p> 
+        </div> </div>
      </div>
 </template>;
 
 <script>
+import {reqdiscover}from '@/network/Reqdiscover.js'
     export default{ 
           components:{
+          },
+          data () {
+              return {
+                  arr:[]
+              }
+          },
+         created () {
+                 reqdiscover().then((res)=>{
+                 res.forEach((item) => {
+                   console.log(item.result);
+                   
+                 this.arr.push(item.result);
+                 });
+                 setTimeout(()=>{console.log(this.arr);
+                 },1500)
+                 
+        })
+    
           }
      }
  </script>
@@ -24,7 +44,10 @@
  #details{
      width: 96vw;
      height:800px;
-     background-color: #bfa;
+    //  background-color: #bfa;
+ }
+ .details-header{
+     margin-top: 2vh
  }
  .details-header-img{
      display: inline-block;
@@ -35,7 +58,7 @@
     display: inline-block;
     margin-left:10px; 
     font-size: 14px;
-    width:78px;height:70px;
+    width:78px;height:40px;
     .title-head{
         margin:3px;
         font-weight: bold;
@@ -47,8 +70,8 @@
 }
 .details-contain{
     width:96vw;
-    height:300px;
-    background-color: aqua;
+    
+    // background-color: aqua;
     .details-contain-img{
     display: inline-block;
     width:96vw;
@@ -58,8 +81,8 @@
     .details-contain-content{
         display: inline-block;
         width:96vw;
-        height:120px;
         margin-top:2vh; 
+        font-size: 14px;
         word-wrap: break-word;
     }
 }

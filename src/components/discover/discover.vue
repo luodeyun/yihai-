@@ -26,6 +26,7 @@
 
 <script>
 import homeswiper from "@/components/home/homeswiper";
+
 export default {
   components: {
     homeswiper
@@ -42,7 +43,9 @@ export default {
     };
   },    
   mounted(){
-      this.$router.push({name:'details'})
+      this.$router.push({name:'details'});
+    
+     
   },
   methods: {
         changesty(e) {

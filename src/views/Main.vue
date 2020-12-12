@@ -1,12 +1,8 @@
 <template>
-    <div id = 'app1'>
-        
-          <div class='tab_bar'>     
-            
+    <div id = 'app1'>       
+          <div class='tab_bar'>                
            <router-view></router-view>  
-             
          </div>      
-         
          <van-tabbar v-model="active" active-color="#F08200" inactive-color="#000" fixed style='width:100vw'>
                  <van-tabbar-item icon="home-o" name='1'>主页</van-tabbar-item>
                  <van-tabbar-item icon='logistics' name='2'>自驾游</van-tabbar-item>

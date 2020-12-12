@@ -1,10 +1,14 @@
 <template>
-    <div id = 'homeswiper'>
-   <transition name="fade" >
+  <div id = 'homeswiper'>
+    <slot name='searchbar'>
+       <transition name="fade" >
           <van-search v-if='searchTf' v-model="searchvalue" placeholder="请输入您想要查找的车型品牌"  class='topBarSearch'  left   background="#000000" :label='wuhan'/>
-     </transition>
-    <van-button  type='default' round class='searchbtn' v-if='!searchTf'><van-icon name="search" class='searchIcon'/><span id='sear'>搜索</span></van-button>
-   <van-swipe class="my-swipe" :autoplay="2000"   indicator-color="orange" >
+       </transition>
+    </slot>
+    <slot name='buttonbar'>    
+                <van-button  type='default' round class='searchbtn' v-if='!searchTf'><van-icon name="search" class='searchIcon'/><span id='sear'>搜索</span></van-button>
+    </slot>
+        <van-swipe class="my-swipe" :autoplay="2000"   indicator-color="orange" >
        <van-swipe-item  v-for='(item,index) of swiperimg' :key ='index'><img class="imgsheet" v-if=' swiperimg[0]' :src="`http://localhost:3000/img/${item}.jpg`" alt=""> </van-swipe-item>   
    </van-swipe>
      </div>
@@ -43,12 +47,12 @@ export default {
 };
 </script>
  <style scoped lang='less'>
- #homeswpier{
-   width:99vw;
- }
+#homeswpier {
+  width: 100vw;
+}
 .imgsheet {
-   //轮播图图片大小样式
-  width: 98vw;
+  //轮播图图片大小样式
+  width: 100vw;
   height: 24vh;
 }
 //搜索栏
@@ -90,15 +94,13 @@ export default {
     height: 100%;
     margin: 0 auto;
     display: inline-block;
-
   }
   .searchbtn span {
     float: left;
   }
 }
- #sear{
-  
-   margin-bottom: 3px;
-   vertical-align: center;
-  }
+#sear {
+  margin-bottom: 3px;
+  vertical-align: center;
+}
 </style>

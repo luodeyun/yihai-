@@ -85,7 +85,7 @@ export default {
       let code = this.code;
       signdown(username, password, code).then(res => {
         if (res == "登录成功") {
-          this.$router.push({name:'mine'});
+          this.$router.push({name:'homemain'});
           this.$notify({ type: "success", message: "欢迎您来到一嗨租车" });
         }else if(res=='验证码不正确'){
           this.code=''

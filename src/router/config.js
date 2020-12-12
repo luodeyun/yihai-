@@ -49,7 +49,30 @@ export default {
             path:'/login',
             name:'login',
             component:()=>import('@/views/login')
-        }
+        },
+        {
+            path:'/discover',
+            name:'discover',
+            component:()=>import('@/components/discover/discover'),
+            children:[
+                {
+                    path:'/discover/details',
+                    name:'details',
+                    component:()=>import('@/components/discover/details')
+                },
+                {
+                    path:'/discover/recommend',
+                    name:'recommend',
+                    component:()=>import('@/components/discover/recommend')
+                },
+                {
+                    path:'/discover/farmwagon',
+                    name:'details',
+                    component:()=>import('@/components/discover/farmwagon')
+                }
+            ]
+        },
+        
 
     ]
 }

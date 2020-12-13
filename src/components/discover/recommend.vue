@@ -1,6 +1,42 @@
 <template>
     <div id = 'app'>
- 推荐
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
+ <p>s's's</p>
      </div>
 </template>;
 

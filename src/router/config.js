@@ -21,7 +21,8 @@ export default {
                 {
                     path:'homemain',
                     name:'homemain',
-                    component:()=>import('@/components/home/homeMain')
+                    component:()=>import('@/components/home/homeMain'),
+                    
                 }]
             },
             {
@@ -37,18 +38,27 @@ export default {
                 name:'mine',
                 component:()=>import('@/views/Mine.vue')
             }
-          ]
+          ],
+          meta:{
+              keepAlive:true
+          },
         },
         {
             path:'/election',
             name:'election',
-            component:()=>import('@/components/electioncity/electioncity')
+            component:()=>import('@/components/electioncity/electioncity'),
+            meta:{
+                keepAlive:false
+            },
           
         },  
         {
             path:'/login',
             name:'login',
-            component:()=>import('@/views/login')
+            component:()=>import('@/views/login'),
+            meta:{
+                keepAlive:false
+            },
         },
         {
             path:'/discover',
@@ -58,7 +68,9 @@ export default {
                 {
                     path:'/discover/details',
                     name:'details',
-                    component:()=>import('@/components/discover/details')
+                    component:()=>import('@/components/discover/details'),
+                   
+                
                 },
                 {
                     path:'/discover/recommend',
@@ -67,11 +79,19 @@ export default {
                 },
                 {
                     path:'/discover/farmwagon',
-                    name:'details',
+                    name:'detailsfarmwagon',
                     component:()=>import('@/components/discover/farmwagon')
                 }
             ]
         },
+        {
+            path:'/saypage/:id',
+            name:'saypage',
+            component:()=>import('@/components/discover/say-page.vue'),
+            meta:{
+                keepAlive:true
+            }
+        }
         
 
     ]

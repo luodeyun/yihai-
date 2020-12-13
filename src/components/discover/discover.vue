@@ -3,7 +3,8 @@
        <homeswiper>
            <div slot='searchbar'></div>
            <div slot='buttonbar'></div>
-        </homeswiper>
+        </homeswiper> 
+         <span class='backIcon' @click='gohome'><van-icon name="arrow-left" size='28px' color='#F9FAFA' /> </span>
         <div class='discover-contain'>
             <div class='discover-contain-header'>
                <a class='discover-contain-header-neirong ' v-for='(item,index) of headerContain' :key='index'>
@@ -12,12 +13,14 @@
                </a>      
             </div>
             <div class='discover-contain-bottom'>
-                  <div class='discover-contain-bottom-header'  ref='header'  >
+                  <div class='discover-contain-bottom-header'  ref='header'   >
                     <router-link  @click.native.capture ='changesty' to='/discover/details' style='color:black'>发现</router-link>
                     <router-link @click.native.prevent ='changesty' to='/discover/recommend' style='color:black'>推荐游记</router-link>
                     <router-link @click.native ='changesty' to='/discover/farmwagon' style='color:black'>四轮生活</router-link>    
                   </div>
-                  <router-view></router-view>
+                 <keep-alive>
+                     <router-view></router-view>
+                 </keep-alive> 
             </div>
         </div>
 
@@ -41,26 +44,27 @@ export default {
         { imgurl: "xiaoche", message: "四轮生活" }
       ]
     };
-  },    
-  mounted(){
-      this.$router.push({name:'details'});
+  },
+  mounted() {
+    console.log('2');
     
-     
+    this.$router.push({ name: "details" });
   },
   methods: {
-        changesty(e) {
-           
-            
-            let arr = this.$refs.header.children;
-            arr.forEach(element => {
-              element.style.fontSize = "14px";
-              element.style.fontWeight = "400";
-            } )
-            e.target.style.fontSize = "16px";
-            e.target.style.fontWeight = "700";
-          
-        }
+    changesty(e) {
+      let arr = this.$refs.header.children;
+      arr.forEach(element => {
+        element.style.fontSize = "14px";
+        element.style.fontWeight = "400";
+      });
+      e.target.style.fontSize = "16px";
+      e.target.style.fontWeight = "700";
+    },
+    gohome() {
+      console.log("2");
+      this.$router.push({ name: "homemain" });
     }
+  }
 };
 </script>
  <style scoped lang='less'>
@@ -93,24 +97,33 @@ export default {
 }
 .discover-contain-bottom {
   width: 94vw;
-  height: 600px;
   margin: 0 auto;
-//   background-color: antiquewhite;
+  //   background-color: antiquewhite;
 }
 .discover-contain-bottom-header {
   font-size: 14px;
-  height: 30px;
- 
-  a
-  {
+  position: sticky;
+    top: 0vh;
+    height: 30px;
+    background-color: #fff;
+    z-index: 999;
+    line-height: 30px;
+  a {
     margin: 8px;
-    
   }
 }
-.discover-contain-bottom-header  :first-child{
-    font-weight: bold;
-    font-size: 16px;
- 
+.discover-contain-bottom-header :first-child {
+  font-weight: bold;
+  font-size: 16px;
 }
-
+.backIcon {
+  position: absolute;
+  left: 2vw;
+  top: 2vh;
+  display: inline-block;
+  width: 8vw;
+  height: 4vh;
+  border-radius: 10px;
+  background-color: rgba(140, 140, 140, 0.514);
+}
 </style>

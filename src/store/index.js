@@ -5,10 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    active:"1"
+    scroll:''
+
   },
   mutations: {
-    
+    set_scrollTop(){
+      
+    }
   },
   actions: {
   },

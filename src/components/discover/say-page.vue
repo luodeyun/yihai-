@@ -26,6 +26,7 @@
 <script>
 import { req_imgUrl } from "@/network/Reqdiscover.js";
 export default {
+  name:'saypage',
   components: {},
   mounted() {
     this.initdata(this.$route.params.id);
@@ -48,9 +49,8 @@ export default {
     }
   },
   beforeRouteLeave (to, from, next) {
-      if(to.meta.keepAlive = true){
-          next();
-      }        
+      to.meta.keepAlive=true;
+      next()     
   }
 };
 </script>

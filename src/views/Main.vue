@@ -1,7 +1,9 @@
 <template>
     <div id = 'app1'>       
-          <div class='tab_bar'>                
-           <router-view></router-view>  
+          <div class='tab_bar'>  
+            <transition :name="animate">       
+                  <router-view></router-view>  
+             </transition>   
          </div>      
          <van-tabbar v-model="active" active-color="#F08200" inactive-color="#000" fixed style='width:100vw'>
                  <van-tabbar-item icon="home-o" name='1'>主页</van-tabbar-item>
@@ -18,7 +20,8 @@ import {mapState} from 'vuex'
   components: {},
   data() {
     return {
-      active:'1'
+      active:'1',
+       animate: ""
     };
   }, 
   watch: {
@@ -30,11 +33,49 @@ import {mapState} from 'vuex'
       } else {
         this.$router.push("/main/home");
       }
+    },
+    $route(to, from) {
+      if (to.meta.tx > from.meta.tx) {
+        console.log(this.animate);
+        
+        this.animate = "slide-left";
+      } else {
+        this.animate = "slide-right";
+      }
     }
+  
   }
 };
 </script>
  <style lang='less' scoped>
 
 
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+}
+ 
+.slide-right-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+ 
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translateX(100%);
+}
+ 
+.slide-left-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+ 
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
 </style>

@@ -13,14 +13,14 @@
                </a>      
             </div>
             <div class='discover-contain-bottom'>
-                  <div class='discover-contain-bottom-header'  ref='header'   >
+                  <div class='discover-contain-bottom-header' v-on:click="addClass()" v-bind:class="[clearsty2?'p1':'p2']" ref='header'   >
                     <router-link  @click.native.capture ='changesty' to='/discover/details' style='color:black'>发现</router-link>
                     <router-link @click.native.prevent ='changesty' to='/discover/recommend' style='color:black'>推荐游记</router-link>
-                    <router-link @click.native ='changesty' to='/discover/farmwagon' style='color:black'>四轮生活</router-link>    
+                    <router-link @click.native.capture ='changesty' to='/discover/farmwagon' style='color:black'>四轮生活</router-link>    
                   </div>
-                 <keep-alive>
-                     <router-view></router-view>
-                 </keep-alive> 
+                 <keep-alive >
+                         <router-view></router-view>          
+                 </keep-alive>
             </div>
         </div>
 
@@ -42,7 +42,9 @@ export default {
         { imgurl: "gaotie", message: "高铁" },
         { imgurl: "fangche", message: "房车游" },
         { imgurl: "xiaoche", message: "四轮生活" }
-      ]
+      ],
+      clearsty1:true
+    
     };
   },
   mounted() {
@@ -52,11 +54,12 @@ export default {
   },
   methods: {
     changesty(e) {
-      let arr = this.$refs.header.children;
-      arr.forEach(element => {
-        element.style.fontSize = "14px";
-        element.style.fontWeight = "400";
-      });
+      this.$refs.header.className=''
+      // let arr = this.$refs.header;
+      // arr.forEach(element => {
+      //   element.style.fontSize = "14px";
+      //   element.style.fontWeight = "400";
+      // });
       e.target.style.fontSize = "16px";
       e.target.style.fontWeight = "700";
     },

@@ -23,42 +23,50 @@ export default {
                     name:'homemain',
                     component:()=>import('@/components/home/homeMain'),
                     
-                }]
+                }],
+                meta:{
+                    tx:1
+                }
             },
             {
                 path: 'roadtrip',
                 name: 'roadtrip',
-                component: () => import('@/views/RoadTrip.vue')
-            },{
+                component: () => import('@/views/RoadTrip.vue'),
+                meta:{
+                    tx:2
+                }
+            },
+            {
                 path:'customer',
                 name:'customer',
-                component:()=>import('@/views/CustomerService.vue')
-            },{
+                component:()=>import('@/views/CustomerService.vue'),
+                meta:{
+                    tx:3
+                }
+            },
+            {
                 path:'mine',
                 name:'mine',
-                component:()=>import('@/views/Mine.vue')
+                component:()=>import('@/views/Mine.vue'),
+                meta:{
+                    tx:4
+                }
             }
           ],
-          meta:{
-              keepAlive:true
-          },
+         
         },
         {
             path:'/election',
             name:'election',
             component:()=>import('@/components/electioncity/electioncity'),
-            meta:{
-                keepAlive:false
-            },
+          
           
         },  
         {
             path:'/login',
             name:'login',
             component:()=>import('@/views/login'),
-            meta:{
-                keepAlive:false
-            },
+          
         },
         {
             path:'/discover',
@@ -69,7 +77,9 @@ export default {
                     path:'/discover/details',
                     name:'details',
                     component:()=>import('@/components/discover/details'),
-                   
+                    meta:{
+                        keepAlive:true //需要被缓存的组件
+                     },
                 
                 },
                 {
@@ -82,15 +92,16 @@ export default {
                     name:'detailsfarmwagon',
                     component:()=>import('@/components/discover/farmwagon')
                 }
-            ]
+            ],
+         
         },
         {
             path:'/saypage/:id',
             name:'saypage',
             component:()=>import('@/components/discover/say-page.vue'),
             meta:{
-                keepAlive:true
-            }
+                keepAlive:false //不需要被缓存的组件
+             },
         }
         
 

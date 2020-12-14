@@ -23,6 +23,7 @@
 <script>
 import { reqdiscover } from "@/network/Reqdiscover.js";
 export default {
+  name:'das',
   components: {},
   data() {
     return {
@@ -68,13 +69,17 @@ export default {
         })
     }
   },
-  beforeRouteEnter (to, from, next) {
-      console.log('进入details');
-      next()
-  },
+  
   beforeRouteLeave (to, from, next) {
-      console.log('离开details');
-      next()
+      if(to.name!=='saypage'){
+        this.$route.meta.keepAlive = false
+          next()
+      }
+     else(to.name=='saypage')
+     {
+       this.$route.meta.keepAlive=true
+       next()
+     }
   }
 
 };

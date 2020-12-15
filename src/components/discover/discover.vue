@@ -15,12 +15,10 @@
             <div class='discover-contain-bottom'>
                   <div class='discover-contain-bottom-header' v-on:click="addClass()" v-bind:class="[clearsty1?'p1':'p2']" ref='header'   >
                     <router-link  @click.native.capture ='changesty' to='/discover/details' style='color:black'>发现</router-link>
-                    <router-link @click.native.prevent ='changesty' to='/discover/recommend' style='color:black'>推荐游记</router-link>
+                    <router-link @click.native.capture ='changesty' to='/discover/recommend' style='color:black'>推荐游记</router-link>
                     <router-link @click.native.capture ='changesty' to='/discover/farmwagon' style='color:black'>四轮生活</router-link>    
                   </div>
-              
                          <router-view></router-view>          
-                
             </div>
         </div>
 
@@ -31,7 +29,7 @@
 import homeswiper from "@/components/home/homeswiper";
 
 export default {
-  name:'discover',
+  name: "discover",
   components: {
     homeswiper
   },
@@ -44,31 +42,17 @@ export default {
         { imgurl: "fangche", message: "房车游" },
         { imgurl: "xiaoche", message: "四轮生活" }
       ],
-      clearsty1:true
-    
+      clearsty1: true
     };
-  },
-  created () {
-    console.log('discover被创建了  1');
-    console.log(this.$route);
-    
-  },
-  destroyed() {
-    console.log('discover销毁了');
-    console.log( this.$route.meta.keepAlive);
-    
-  },
-  mounted() {   
-  
   },
   methods: {
     changesty(e) {
-      this.$refs.header.className=''
-      // let arr = this.$refs.header;
-      // arr.forEach(element => {
-      //   element.style.fontSize = "14px";
-      //   element.style.fontWeight = "400";
-      // });
+      this.$refs.header.className = "";
+      let arr = this.$refs.header;
+      arr.forEach(element => {
+        element.style.fontSize = "14px";
+        element.style.fontWeight = "400";
+      });
       e.target.style.fontSize = "16px";
       e.target.style.fontWeight = "700";
     },
@@ -114,11 +98,11 @@ export default {
 .discover-contain-bottom-header {
   font-size: 14px;
   position: sticky;
-    top: 0vh;
-    height: 30px;
-    background-color: #fff;
-    z-index: 999;
-    line-height: 30px;
+  top: 0vh;
+  height: 30px;
+  background-color: #fff;
+  z-index: 999;
+  line-height: 30px;
   a {
     margin: 8px;
   }

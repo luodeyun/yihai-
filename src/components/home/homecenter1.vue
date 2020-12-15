@@ -9,21 +9,21 @@
       <span>异地还车</span>
     </div>
     <div class="containcity">
-      <p @click="dianwo" class="address">{{ count.name }}</p>
+      <p @click="elecity" class="address">{{ count.name }}</p>
       <p></p>
-      <p @click="dianwo" class="address">{{ count.name }}</p>
+      <p @click="backcar" class="address">{{ count.name }}</p>
     </div>
     <div class="containdate">
       <div @click="show = true">
-        <div>{{ initmonth }}月{{ initday }}日</div>
-        <p style="margin: 5px">周二</p>
+        <div class='monday'>{{ initmonth }}月{{ initday }}日</div>
+        <p class='weekday'>星期{{weekday}}</p>
       </div>
       <p class="Postion_">{{ dispance }}天</p>
       <p class="position_">_______________</p>
       <p></p>
       <div @click="show = true">
-        <div>{{ endmonth }} 月{{ endday }}号</div>
-        <p style="margin: 5px">周二</p>
+        <div  class='monday'>{{ endmonth }}月{{ endday }}日</div>
+        <p  class='weekday'>星期{{weekdayend}}</p>
       </div>
 
       <van-calendar v-model="show" type="range" @confirm="onConfirm" />
@@ -37,11 +37,13 @@ export default {
     return {
       date: "",
       show: false,
-      dispance: 2,
+      dispance: 1,
       initmonth: null,
       initday: null,
       endmonth: null,
       endday: null,
+      weekday:null,
+      weekdayend:null
     };
   },
 
@@ -50,7 +52,10 @@ export default {
     this.getmonthandday();
   },
   methods: {
-    dianwo() {
+    elecity() {
+      this.$router.push("/election");
+    },
+     backcar() {
       this.$router.push("/election");
     },
     formatDate(date) {
@@ -58,18 +63,30 @@ export default {
     },
     onConfirm(date) {
       const [start, end] = date;
+      let arr =['一','二','三','四','五','六','日']
       console.log(start, end);
-      this.dispance = end.getDate() - start.getDate();
+      let a = (end.getDate() - start.getDate())
+      console.log();
+      
+      this.dispance = (end-start)/1000/60/60/24;
       this.show = false;
       this.initday = start.getDate();
       this.initmonth = start.getMonth() + 1;
       this.endday = end.getDate();
       this.endmonth = end.getMonth() + 1;
+      this.weekday=arr[start.getDay()]
+      this.weekdayend=arr[end.getDay()]
     },
     getmonthandday() {
+      let arr =['一','二','三','四','五','六','日']
       this.initmonth = new Date().getMonth() + 1;
       this.initday = new Date().getDate();
+      this.weekday = arr[new Date().getDay()]
+      this.endmonth = new Date().getMonth() + 1;
+      this.endday = new Date().getDate()+1;
+      this.weekdayend =arr[ new Date().getDay()+1]
     },
+
   },
   computed: {
     count() {
@@ -130,5 +147,16 @@ export default {
   position: absolute;
   left: 48%;
   top: 30%;
+}
+.monday{
+  width:80px;
+  height: 21px;
+  text-align: center;
+  line-height: 21px;
+}.weekday{
+  width:70px;
+  height: 21px;
+  text-align: center;
+  line-height: 21px
 }
 </style>

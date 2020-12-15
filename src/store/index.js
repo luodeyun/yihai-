@@ -9,8 +9,12 @@ export default new Vuex.Store({
   },
   mutations: {
     setVla(state, val) {
+    if(val){
       state.val = val;
-      console.log(state.val);
+    }
+     else {
+       return state.name
+     }
     },
   },
   actions: {},

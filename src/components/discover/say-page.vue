@@ -48,10 +48,10 @@ export default {
         this.$router.go(-1)
     }
   },
-  beforeRouteLeave (to, from, next) {
-      to.meta.keepAlive=true;
-      next()     
-  }
+  // beforeRouteLeave (to, from, next) {
+  //     to.meta.keepAlive=true;
+  //     next()     
+  // }
 };
 </script>
  <style scoped lang='less'>

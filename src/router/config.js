@@ -72,13 +72,14 @@ export default {
             path:'/discover',
             name:'discover',
             component:()=>import('@/components/discover/discover'),
+            redirect: '/discover/details',
             children:[
                 {
                     path:'/discover/details',
                     name:'details',
                     component:()=>import('@/components/discover/details'),
                     meta:{
-                        keepAlive:true //需要被缓存的组件
+                        keepAlive:false //需要被缓存的组件
                      },
                 
                 },

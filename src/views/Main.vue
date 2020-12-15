@@ -11,7 +11,6 @@
                  <van-tabbar-item icon='service-o' name='3'>客服</van-tabbar-item>
                  <van-tabbar-item icon='user-o' name='4'>我的</van-tabbar-item>
          </van-tabbar>
-    
      </div>
 </template>
 <script>
@@ -21,29 +20,40 @@ import {mapState} from 'vuex'
   data() {
     return {
       active:'1',
-       animate: ""
+      animate: ""
     };
   }, 
   watch: {
     active(newval) {  
       if (newval == 2) this.$router.push("/discover");
       else if (newval == 3) this.$router.push("/Main/customer");
-      else if (newval == 4) {
-        this.$router.push("/Main/mine");
-      } else {
-        this.$router.push("/main/home");
-      }
+      else if (newval == 4) this.$router.push("/Main/mine");
+      else if(newval==1) this.$router.push({name:'homemain'})
     },
     $route(to, from) {
       if (to.meta.tx > from.meta.tx) {
         console.log(this.animate);
-        
         this.animate = "slide-left";
       } else {
         this.animate = "slide-right";
       }
     }
-  
+  },
+  created () {
+    console.log('homemain被创建了');
+  },
+  destroyed () {
+    console.log('homemain被销毁了');
+    
+  },
+  beforeRouteEnter (to, from, next) {
+    if(from='discover'){
+       console.log('5');
+       next()
+    }else{     
+       next();
+    }
+   
   }
 };
 </script>

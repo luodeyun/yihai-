@@ -51,7 +51,6 @@ export default {
     back() {
       let timer;
       timer = setInterval(function() {
-        
         var scrollTop =
           document.documentElement.scrollTop || document.body.scrollTop;
         var ispeed = Math.floor(scrollTop / 6);
@@ -72,11 +71,10 @@ export default {
   
   beforeRouteLeave (to, from, next) {
       if(to.name!=='saypage'){
-        this.$route.meta.keepAlive = false
+        this.$route.meta.keepAlive = false  
           next()
       }
-     else(to.name=='saypage')
-     {
+     else {
        this.$route.meta.keepAlive=true
        next()
      }

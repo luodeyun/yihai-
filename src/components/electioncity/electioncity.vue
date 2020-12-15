@@ -1,9 +1,6 @@
 <template>
-      <div id="app">
-    <best-city
-      ref="vuecity"
-      @closeChooseCity="getCity"
-    ></best-city>
+  <div id="app">
+    <best-city ref="vuecity" @closeChooseCity="getCity"></best-city>
   </div>
 </template>;
 
@@ -12,24 +9,24 @@ export default {
   components: {},
   data() {
     return {
-      searchvalue: ""
+      searchvalue: "",
     };
   },
   mounted() {
-     this.showCity()
+    this.showCity();
   },
   methods: {
     goback() {
       this.$router.go(-1);
     },
     getCity(val) {
-       this.$router.push({name:'homemain'})
-      console.log(val);
+      this.$router.push({ name: "homemain" });
+      this.$store.commit("setVla", val);
     },
     showCity() {
       this.$refs.vuecity.show();
-    }
-  }
+    },
+  },
 };
 </script>
  <style scoped lang='less'>

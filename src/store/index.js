@@ -1,20 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    scroll:''
-
+    val: { name: "武汉" },
   },
   mutations: {
-    set_scrollTop(){
-      
-    }
+    setVla(state, val) {
+      state.val = val;
+      console.log(state.val);
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});

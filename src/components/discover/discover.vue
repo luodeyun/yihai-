@@ -13,14 +13,14 @@
                </a>      
             </div>
             <div class='discover-contain-bottom'>
-                  <div class='discover-contain-bottom-header' v-on:click="addClass()" v-bind:class="[clearsty2?'p1':'p2']" ref='header'   >
+                  <div class='discover-contain-bottom-header' v-on:click="addClass()" v-bind:class="[clearsty1?'p1':'p2']" ref='header'   >
                     <router-link  @click.native.capture ='changesty' to='/discover/details' style='color:black'>发现</router-link>
                     <router-link @click.native.prevent ='changesty' to='/discover/recommend' style='color:black'>推荐游记</router-link>
                     <router-link @click.native.capture ='changesty' to='/discover/farmwagon' style='color:black'>四轮生活</router-link>    
                   </div>
-                 <keep-alive >
+              
                          <router-view></router-view>          
-                 </keep-alive>
+                
             </div>
         </div>
 
@@ -31,6 +31,7 @@
 import homeswiper from "@/components/home/homeswiper";
 
 export default {
+  name:'discover',
   components: {
     homeswiper
   },
@@ -47,10 +48,18 @@ export default {
     
     };
   },
-  mounted() {
-    console.log('2');
+  created () {
+    console.log('discover被创建了  1');
+    console.log(this.$route);
     
-    this.$router.push({ name: "details" });
+  },
+  destroyed() {
+    console.log('discover销毁了');
+    console.log( this.$route.meta.keepAlive);
+    
+  },
+  mounted() {   
+  
   },
   methods: {
     changesty(e) {
@@ -64,7 +73,6 @@ export default {
       e.target.style.fontWeight = "700";
     },
     gohome() {
-      console.log("2");
       this.$router.push({ name: "homemain" });
     }
   }

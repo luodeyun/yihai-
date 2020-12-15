@@ -22,7 +22,7 @@
       <p class="position_">_______________</p>
       <p></p>
       <div @click="show = true">
-        <div  class='monday'>{{ endmonth }}月{{ endday }}日</div>
+        <div  class='monday'>{{endmonth}}月{{ endday }}日</div>
         <p  class='weekday'>星期{{weekdayend}}</p>
       </div>
 
@@ -117,7 +117,7 @@ export default {
   // background-color: #f00;
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid rgb(233, 238, 238);
   .address {
     width: 16vw;
     height: 5vh;
@@ -135,7 +135,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid #aaaaaa;
+border-bottom: 1px solid rgb(233, 238, 238);
 }
 .position_ {
   color: #aaaaaa;

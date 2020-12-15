@@ -39,16 +39,10 @@ import {mapState} from 'vuex'
       }
     }
   },
-  created () {
-    console.log('homemain被创建了');
-  },
-  destroyed () {
-    console.log('homemain被销毁了');
-    
-  },
+  
   beforeRouteEnter (to, from, next) {
     if(from='discover'){
-       console.log('5');
+       
        next()
     }else{     
        next();

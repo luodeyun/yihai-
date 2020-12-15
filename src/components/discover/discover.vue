@@ -13,10 +13,10 @@
                </a>      
             </div>
             <div class='discover-contain-bottom'>
-                  <div class='discover-contain-bottom-header' v-on:click="addClass()" v-bind:class="[clearsty1?'p1':'p2']" ref='header'   >
-                    <router-link  @click.native.capture ='changesty' to='/discover/details' style='color:black'>发现</router-link>
-                    <router-link @click.native.capture ='changesty' to='/discover/recommend' style='color:black'>推荐游记</router-link>
-                    <router-link @click.native.capture ='changesty' to='/discover/farmwagon' style='color:black'>四轮生活</router-link>    
+                  <div class='discover-contain-bottom-header' v-on:click="changesty"   ref='header'   >
+                    <router-link  @click.native.capture ='changesty' to='/discover/details' style="color:black ">发现</router-link>
+                    <router-link @click.native.capture ='changesty' to='/discover/recommend' style="color:black">推荐游记</router-link>
+                    <router-link @click.native.capture ='changesty' to='/discover/farmwagon' style="color:black" >四轮生活</router-link>    
                   </div>
                          <router-view></router-view>          
             </div>
@@ -48,13 +48,15 @@ export default {
   methods: {
     changesty(e) {
       this.$refs.header.className = "";
-      let arr = this.$refs.header;
+      let arr = this.$refs.header.children;
+      console.log(arr);
       arr.forEach(element => {
-        element.style.fontSize = "14px";
+          element.style.fontSize = "14px";
         element.style.fontWeight = "400";
+        element.style.margin = "8px";
       });
       e.target.style.fontSize = "16px";
-      e.target.style.fontWeight = "700";
+      e.target.style.fontWeight = "700"; 
     },
     gohome() {
       this.$router.push({ name: "homemain" });

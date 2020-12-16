@@ -1,6 +1,5 @@
 <template>
     <div class='homebottom'>
-      
           <span class='biaoti'>游记攻略</span>  
           <div class='contain'>  
               <div class='containleft'>

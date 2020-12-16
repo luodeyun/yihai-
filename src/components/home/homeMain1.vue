@@ -56,7 +56,7 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-
+background-color: #FAFAFA;
 }
 .daohang {
     border-radius: 5px;

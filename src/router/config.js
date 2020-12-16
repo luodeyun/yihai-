@@ -56,7 +56,7 @@ export default {
          
         },
         {
-            path:'/election',
+            path:'/election/:id',
             name:'election',
             component:()=>import('@/components/electioncity/electioncity'),
           
@@ -103,8 +103,12 @@ export default {
             meta:{
                 keepAlive:false //不需要被缓存的组件
              },
+        },
+        {
+            path:'/electioncar',
+            name:'electioncar',
+            component:()=>import('@/components/electioncity/electioncar')
         }
-        
 
     ]
 }

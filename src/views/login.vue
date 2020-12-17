@@ -31,7 +31,8 @@
         name='password'
         type="password"
         clearable
-        placeholder="请输入密码"     
+        placeholder="请输入密码"  
+        :error-message="passwordmsg"
         @blur='filedPassword'
       /> 
       <van-field
@@ -47,7 +48,7 @@
             <van-button slot="button"  @click.native.prevent='captcha' style='width:80px' ><div v-html='svg' style='height:60px,width:50px'>{{svg}}</div></van-button>
         </van-field>
        <div style="margin:0 2vw;margin-top:8vw">
-		    <van-button  round block color='#FB5430' type="info" native-type="submit" @click='signup' :disabled='false'>
+		    <van-button  round block color='#FB5430' type="info" native-type="submit" @click='signup' :disabled='loginbtn'>
 		      登录
 		    </van-button>
         <van-notify id="van-notify"  />
@@ -60,12 +61,13 @@ import { login, signdown } from "@/network/ReqLogin.js";
 export default {
   data() {
     return {
-      username: "",
-      password: "",
-      code: "",
+      username: "",    //手机号
+      password: "",         //密码
+      code: "",          //验证码
       username1: "ss",
       svg: "",
-      loginbtn: true //  登录按钮
+      loginbtn: true   //true 为禁用
+       //  登录按钮
     };
   },
   mounted() {
@@ -94,7 +96,8 @@ export default {
       });
     },
     filedPassword() {
-      if (this.password !== "" && this.username1 == "") {
+      if ( this.username1 == ""&&this.password!=='' ) //密码不为空且帐号为h
+       {
         return (this.loginbtn = false);
       } else {
         this.loginbtn = true;
@@ -109,9 +112,19 @@ export default {
         return "手机号码格式错误";
       } else {
         this.username1 = "";
-        return " ";
+        return "";
       }
-    }
+    },
+     passwordmsg() {
+      if (this.password=== "") {
+        return "";
+      } else if ( !/^[a-zA-Z]\w{5,17}$/.test(this.password)) {
+        return "密码小于六位且需以字母开头";
+      } else {
+        this.username1 = "";
+        return "";
+      }
+     }
   }
 };
 </script>

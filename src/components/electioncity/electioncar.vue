@@ -15,8 +15,8 @@
         </van-sidebar>
         <div id='container' v-if='activeKey==0'>
            <div class='container-c' v-for='(item,index) of StorkPrice' :key='index'>
-                <span class='container-left'><img :src="item.CarTypeItem.SmallImagePath" alt="" ></span>
-                <span class='container-rigth'> 
+                <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt="carimg" @click='playauto' ><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
+                <span class='container-rigth' @click="order"> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
                       <p class='container-title-two'>{{item.CommonDescription}}</p>
@@ -31,7 +31,7 @@
          
         <div id='container' v-if='activeKey==1'> 
           <div class='container-c' v-for='(item,index) of StorckPricejj' :key='index+90'>
-                <span class='container-left'><img :src="item.CarTypeItem.SmallImagePath" alt="" ></span>
+                <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt=""  @click='playauto'><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
                 <span class='container-rigth'> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
@@ -47,7 +47,7 @@
         </div>
         <div id='container' v-if='activeKey==2'>
            <div class='container-c' v-for='(item,index) of StorckPriceJY' :key='index+600'>
-                <span class='container-left'><img :src="item.CarTypeItem.SmallImagePath" alt="" ></span>
+                <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt="" ><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
                 <span class='container-rigth'> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
@@ -62,7 +62,7 @@
         </div>
         <div id='container' v-if='activeKey==3'>
         <div class='container-c' v-for='(item,index) of StorckPriceSUV' :key='index+6000'>
-                <span class='container-left'><img :src="item.CarTypeItem.SmallImagePath" alt="" ></span>
+                <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt="" ><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
                 <span class='container-rigth'> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
@@ -77,7 +77,7 @@
         </div>
         <div id='container' v-if='activeKey==4'>
         <div class='container-c' v-for='(item,index) of StorckPriceSW' :key='index+6000'>
-                <span class='container-left'><img :src="item.CarTypeItem.SmallImagePath" alt="" ></span>
+                <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt="" ><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
                 <span class='container-rigth'> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
@@ -92,7 +92,7 @@
         </div>
         <div id='container' v-if='activeKey==5'>
         <div class='container-c' v-for='(item,index) of StorckPriceGW' :key='index+6000'>
-                <span class='container-left'><img :src="item.CarTypeItem.SmallImagePath" alt="" ></span>
+                <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt="" ><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
                 <span class='container-rigth'> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
@@ -124,20 +124,27 @@ export default {
     this.pull();
   },
   methods: {
-    onClickLeft() {
+    onClickLeft() {  //路由回退
       this.$router.go(-1);
     },
-    pull() {
+    pull() { //获取数据
       reqcar().then(res => {
         this.StorckPriceList = res[0].StockPriceList;
       });
     },
-    pullsss() { 
+    pullsss() {  //升序
       this.sortType = false;
     },
-    diyu(){ 
+    diyu(){ //降序
       this.sortType = true
+    },
+    playauto(a,b){  //带参跳闸un视频页面
+      this.$router.push({name:'playauto',params:{id:a,title:b}})
+    } ,
+    order(){
+     this.$router.push({name:"orderfrom"})
     }
+
   },
   computed: {
     StorkPrice() {
@@ -153,7 +160,7 @@ export default {
           return p2.FloorPrice - p1.FloorPrice;
         });
       }
-      console.log(StorckPriceList);
+   
       return StorckPriceList;
     },
     StorckPricejj() { //经济型:价格低于200的筛选出来
@@ -251,25 +258,30 @@ export default {
   background-color: #f2f2f2;
   overflow: scroll;
   .container-left {
+    position: relative;
     display: inline-block;
     // float: left;
     overflow: hidden;
     width: 23vw;
     height: 14vh;
-
     img {
       margin-top: 3vh;
       width: 22vw;
       height: 8vh;
     }
-    // background-color: pink;
+.playatuo{
+  width: 5vw;
+  height: 4vh;
+  position: absolute;
+  top: 2vh;
+  left:8vw;
+}
   }
   .container-rigth {
     display: inline-block;
     width: 54vw;
     height: 14vh;
     overflow: hidden;
-    // background-color: antiquewhite;
     padding-left: 1vw;
     div {
       margin-top: 2vh;
@@ -299,7 +311,7 @@ export default {
 }
 .navbar {
   background-color: #29b7b7;
-  color: #fff;
+  color: #fff !important;
   position: fixed;
   width: 100vw;
   left: 0;
@@ -351,4 +363,5 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
+
 </style>

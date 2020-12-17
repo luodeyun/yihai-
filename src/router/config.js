@@ -63,6 +63,17 @@ export default {
           
         },  
         {
+            path:'/playauto',
+            name:'playauto',
+            component:()=>import('@/components/electioncity/playauto'),
+        },
+        {
+            path:'/orderfrom',
+            name:'orderfrom',
+            component:()=>import('@/components/electioncity/orderfrom'),
+        },
+
+        {
             path:'/login',
             name:'login',
             component:()=>import('@/views/login'),

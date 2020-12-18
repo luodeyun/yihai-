@@ -16,7 +16,7 @@
         <div id='container' v-if='activeKey==0'>
            <div class='container-c' v-for='(item,index) of StorkPrice' :key='index'>
                 <span class='container-left' @click='playauto(item.CarVideoDto.LongMovieUrlFifteen,item.CarTypeItem.Name)'><img :src="item.CarTypeItem.SmallImagePath" alt="carimg" @click='playauto' ><img src="@/assets/img/playatuo.png" alt="" class='playatuo'></span>
-                <span class='container-rigth' @click="order"> 
+                <span class='container-rigth' @click="order(item)"> 
                    <div>
                       <p class='container-title'>{{item.CarTypeItem.Name}}</p>
                       <p class='container-title-two'>{{item.CommonDescription}}</p>
@@ -141,8 +141,13 @@ export default {
     playauto(a,b){  //带参跳闸un视频页面
       this.$router.push({name:'playauto',params:{id:a,title:b}})
     } ,
-    order(){
-     this.$router.push({name:"orderfrom"})
+    order(item){
+     this.$router.push({
+       name:"orderfrom",
+       params:{
+        item:item 
+       }
+      })
     }
 
   },
@@ -243,12 +248,24 @@ export default {
       }
       return StorckPriceGW;
     },
-
+    
     
   }
 };
 </script>
  <style scoped lang='less'>
+ .navbar{
+   color: #fff !important;  
+    /deep/.van-nav-bar__title{
+        color: #fff !important;    
+    } 
+    /deep/.van-nav-bar__arrow {
+        color: #fff !important;  
+    }
+    /deep/.van-nav-bar__text {
+        color: #fff !important;  
+ }
+ }
 #container {
   position: absolute;
   top: 7vh;

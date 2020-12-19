@@ -9,3 +9,12 @@ export function getyj(){
         url:'/youji'
     })
 }
+export function recommend(count){
+    return request({
+        methods:'get',
+        url:'/recommendyj',
+        params:{count}
+    })
+   
+    
+}

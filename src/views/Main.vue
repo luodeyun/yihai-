@@ -39,16 +39,8 @@ import {mapState} from 'vuex'
       }
     }
   },
+ 
   
-  beforeRouteEnter (to, from, next) {
-    if(from='discover'){
-       
-       next()
-    }else{     
-       next();
-    }
-   
-  }
 };
 </script>
  <style lang='less' scoped>

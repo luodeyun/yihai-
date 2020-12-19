@@ -5,6 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    token:'',
+    userPhone:'您还未登录哦',
+    username:'',
     initval: {
       name: "武汉"
     },
@@ -21,6 +24,14 @@ export default new Vuex.Store({
     weekdayend: new Date().getDay() //结束的星期皆
   },
   mutations: {
+    setPhone(state,s){
+      state.userPhone=s
+   }, setName(state,s){
+    state.username=s
+ },
+    settoken(state,s){
+       state.token=s
+    },
     initVla(state, val) {
       if (val) {
         state.initval = val;

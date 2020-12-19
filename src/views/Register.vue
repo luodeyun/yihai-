@@ -4,7 +4,7 @@
 <van-notify id="van-notify" />
   <van-nav-bar style="background-color: #FB5430;">	
 			<template #left>
-				<van-icon  color="white" name="arrow-left" />
+				<van-icon  color="white" name="arrow-left" @click="back"/>
 			</template>	
 			<template #title>
 				<span style="color: white;">注册</span>
@@ -95,7 +95,11 @@ export default {
       this.svg = res;
     });
   },
+  
   methods: {
+    back(){
+      this.$router.go(-1)
+    },
     captcha() {
       login().then(res => {
         this.svg = res;
@@ -109,26 +113,13 @@ export default {
   
       let re_password=this.re_password
       registerdown(nick_name,username, password, re_password, code).then(res => {
-        if (res == "注册成功了") {                               
+        if (res.success == true) {    
+          console.log('2');
+                                     
           this.$router.push({ name: "homemain" });
-          this.$notify({ type: "success", message: "欢迎您来到一嗨租车" });
-        } else if (res == "验证码不正确") {
-          this.code = "";
-          this.$notify({ type: "danger", message: "验证码错误，请重新输入" });
-        } else if (res == "手机号输入不合法") {
-          this.$notify({ type: "danger", message: "手机号输入不合法" });
-        } else if (res == "昵称输入不合法，昵称应为中文") {
-          this.$notify({
-            type: "danger",
-            message: "昵称输入不合法，昵称应为中文"
-          });
-        } else if (password !== re_password) {
-          this.$notify({ type: "danger", message: "两次输入密码不一致" });
-        } else if (res == `注册失败，${phone}邮箱已经被注册了`) {
-          this.$notify({
-            type: "danger",
-            message: `注册失败，${phone}邮箱已经被注册了`
-          })
+          this.$notify({ type: "success", message: res.message });
+        } else if (res.err == true) {
+         this.$notify({ type: "danger", message: res.message});    
         }
       }).catch((err)=>{
            this.$notify({ type: "danger", message: '网络错误' });
@@ -157,8 +148,8 @@ export default {
     passwordmsg() {
       if (this.password === "") {
         return "";
-      } else if (!/^[a-zA-Z]\w{5,17}$/.test(this.password)) {
-        return "密码小于六位且需以字母开头";
+      } else if (!/^\w{5,17}$/.test(this.password)) {
+        return "密码小于六位";
       } else {
         this.username1 = "";
         return "";

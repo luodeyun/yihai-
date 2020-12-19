@@ -1,5 +1,6 @@
 <template>
   <div class="homeMaincenter">
+  
     <div class="election">
       <span>
         <van-badge dot color="#FB4B30 "></van-badge>
@@ -125,8 +126,18 @@ export default {
      endcount() {
       return this.$store.state.endval;
     },
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log(to.name,'333');
+    
+      if(to.name=='login') {
+        console.log('22');
+        
+        this.$notify({ type: "danger", message: "欢迎您来到一嗨租车" });}
+      next()     
   }
 };
+
 </script>
  <style scoped lang='less'>
 .homeMaincenter {

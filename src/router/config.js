@@ -8,6 +8,9 @@ export default {
            path:'/main',
            name:'main',
            component:()=>import('@/views/Main'),
+           meta:{
+               keepAlive:true
+           },
            children:[
             {
                 path: 'home',
@@ -22,7 +25,7 @@ export default {
                     path:'homemain',
                     name:'homemain',
                     component:()=>import('@/components/home/homeMain'),
-                    
+                     
                 }],
                 meta:{
                     tx:1
@@ -82,12 +85,16 @@ export default {
             path:'/register',
             name:'register',
             component:()=>import('@/views/Register'),
+            
         },
         {
             path:'/discover',
             name:'discover',
             component:()=>import('@/components/discover/discover'),
             redirect: '/discover/details',
+            meta: {
+                requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+              },
             children:[
                 {
                     path:'/discover/details',
@@ -122,7 +129,10 @@ export default {
         {
             path:'/electioncar',
             name:'electioncar',
-            component:()=>import('@/components/electioncity/electioncar')
+            component:()=>import('@/components/electioncity/electioncar'),
+            meta: {
+                requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+              },
         }
 
     ]

@@ -1,13 +1,15 @@
 <template>
   <div id="mine">
     <div class="mine-header">
-      <span class="mine-header-img"> 头像 </span>
+      <span class="mine-header-img"> <img src="@/assets/img/touxiang.png" alt="" class='touxiang'> </span>
       <div class="mine-header-rigth">
-        <span class="mine-header-right-phone">18372028861</span>
+        <span class="mine-header-right-phone">{{this.$store.state.userPhone}}</span>
         <div class="mine-header-right-vip">
           <span>普通会员</span><span>待认证</span>
         </div>
+       
       </div>
+      <span class='denglu' @click='denglu'>登录</span>
     </div>
     <div class="mine-contain">
       <div class="mine-contain-first">我的订单</div>
@@ -123,7 +125,13 @@ export default {
   components: {},
   data() {
     return {};
+    
   },
+  methods:{
+      denglu(){
+        this.$router.push('/login')
+      }
+    }
 };
 </script>
  <style lang='less' scoped>
@@ -139,7 +147,7 @@ export default {
 .mine-header {
   width: 100vw;
   height: 18vh;
-  background-color: #00ffff;
+  background-color: #079093;
   display: flex;
   align-items: center;
   .mine-header-img {
@@ -153,27 +161,35 @@ export default {
     background-color: #fff;
   }
   .mine-header-rigth {
-    background-color: #fff;
+    // background-color: #fff;
+    color: #fff;
     width: 50vw;
     height: 10vh;
     .mine-header-right-phone {
-      background-color: #bfa;
+      // background-color: #bfa;
       display: inline-block;
       text-align: center;
       line-height: 6vh;
       height: 6vh;
+      font-size: 12px;
     }
     .mine-header-right-vip {
-      background-color: green;
+      // background-color: green;
       height: 4vh;
       width: 38vw;
-      color: #fff;
+      // color: #fff;
       font-size: 12px;
       line-height: 4vh;
+      
       display: flex;
       justify-content: space-between;
       span {
         margin: 0 2vw;
+        padding:0 1vw;
+        border: 1px solid #fff;
+       border-radius:2vw; 
+       background-color: rgba(140,196,172,0.45)
+       
       }
     }
   }
@@ -244,4 +260,15 @@ export default {
     }
   }
 }
+.denglu{
+  color: #f3f3f3;
+  width:15vw;
+  height: 5vh;
+  border: 1px solid #fff;
+  text-align: center;
+  line-height: 5vh;
+  border-radius:3px;
+  background-color: #23B7B7; 
+}
+.touxiang{width:65px;height:65px}
 </style>

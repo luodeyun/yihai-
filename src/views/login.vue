@@ -5,7 +5,7 @@
 <van-notify id="van-notify" />
   <van-nav-bar style="background-color: #FB5430;">	
 			<template #left>
-				<van-icon  color="white" name="arrow-left" />
+				<van-icon  color="white" name="arrow-left" @click="back" />
 			</template>	
 			<template #title>
 				<span style="color: white;">登录</span>
@@ -47,7 +47,9 @@
         <van-toast id="van-toast" />
             <van-button slot="button"  @click.native.prevent='captcha' style='width:80px' ><div v-html='svg' style='height:60px,width:50px'>{{svg}}</div></van-button>
         </van-field>
+        <span class='zuce' @click='zuce'>注册</span>
        <div style="margin:0 2vw;margin-top:8vw">
+         
 		    <van-button  round block color='#FB5430' type="info" native-type="submit" @click='signup' :disabled='loginbtn'>
 		      登录
 		    </van-button>
@@ -76,6 +78,13 @@ export default {
     });
   },
   methods: {
+    back(){
+      this.$router.go(-1)
+    },
+    zuce(){
+      this.$router.replace({name:'register'})
+    }
+    ,
     captcha() {
       login().then(res => {
         this.svg = res;
@@ -86,7 +95,11 @@ export default {
       let password = this.password;
       let code = this.code;
       signdown(username, password, code).then(res => {
-        if (res == "登录成功") {
+        if (res.success) {
+          console.log(res);
+          let {phone,name} = res
+          this.$store.commit('setPhone',phone)
+          this.$store.commit('setName',name)
           this.$router.push({name:'homemain'});
           this.$notify({ type: "success", message: "欢迎您来到一嗨租车" });
         }else if(res=='验证码不正确'){
@@ -118,7 +131,7 @@ export default {
      passwordmsg() {
       if (this.password=== "") {
         return "";
-      } else if ( !/^[a-zA-Z]\w{5,17}$/.test(this.password)) {
+      } else if ( !/^\w{6,17}$/.test(this.password)) {
         return "密码小于六位且需以字母开头";
       } else {
         this.username1 = "";
@@ -145,5 +158,15 @@ export default {
     margin-top: 7.5vh;
     margin-left: 30vw;
   }
+}
+.zuce{
+  float: right;
+  width: 10vw;
+  height: 3vh;
+  text-align: center; 
+  border: 1px solid orange;
+  line-height: 3vh;
+  border-radius: 5px;
+  font-size: 12px;
 }
 </style>

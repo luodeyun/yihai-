@@ -9,11 +9,10 @@ export function getyj(){
         url:'/youji'
     })
 }
-export function recommend(count){
+export function recommend(){
     return request({
         methods:'get',
         url:'/recommendyj',
-        params:{count}
     })
    
     

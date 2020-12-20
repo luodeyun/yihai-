@@ -27,8 +27,8 @@
               }
           },
           mounted() {
-           this.url=this.$route.params.id;
-           this.title=this.$route.params.title;
+           this.url=this.$route.query.id;
+           this.title=this.$route.query.title;
               
           },
      }

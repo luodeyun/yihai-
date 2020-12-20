@@ -13,12 +13,16 @@
                </a>      
             </div>
             <div class='discover-contain-bottom'>
-                  <div class='discover-contain-bottom-header' v-on:click="changesty"   ref='header'   >
-                    <router-link  @click.native.capture ='changesty' to='/discover/details' style="color:black ">发现</router-link>
-                    <router-link @click.native.capture ='changesty' to='/discover/recommend' style="color:black">推荐游记</router-link>
-                    <router-link @click.native.capture ='changesty' to='/discover/farmwagon' style="color:black" >四轮生活</router-link>    
+                  <div class='discover-contain-bottom-header'    ref='header'   >
+              
+                  
+                    <span @click='active=1' :class="[active==1?nofontsty:fontsty]">发现</span>
+                    <span @click="active=2" :class="[active==2?nofontsty:fontsty]">推荐游记</span>
+                  
                   </div>
-                         <router-view></router-view>          
+                          
+                        <det v-show='active==1'></det>
+                        <recommend v-show='active==2'></recommend> 
             </div>
         </div>
 
@@ -27,11 +31,15 @@
 
 <script>
 import homeswiper from "@/components/home/homeswiper";
-
+import det from './details';
+import recommend from './recommend';
 export default {
   name: "discover",
   components: {
-    homeswiper
+    homeswiper,
+    det,
+    recommend,
+    
   },
   data() {
     return {
@@ -41,23 +49,23 @@ export default {
         { imgurl: "gaotie", message: "高铁" },
         { imgurl: "fangche", message: "房车游" },
         { imgurl: "xiaoche", message: "四轮生活" }
+
       ],
-      clearsty1: true
+      active:1,
+      recommends:false,
+      clearsty1: true,
+      fontsty:'fontsty',
+      nofontsty:'nofontsty'
     };
   },
   methods: {
-    changesty(e) {
-      this.$refs.header.className = "";
-      let arr = this.$refs.header.children;
-      console.log(arr);
-      arr.forEach(element => {
-          element.style.fontSize = "14px";
-        element.style.fontWeight = "400";
-        element.style.margin = "8px";
-      });
-      e.target.style.fontSize = "16px";
-      e.target.style.fontWeight = "700"; 
-    },
+    changesty(){
+     
+     
+   
+
+    }, 
+   
     gohome() {
       this.$router.push({ name: "homemain" });
     }
@@ -65,6 +73,14 @@ export default {
 };
 </script>
  <style scoped lang='less'>
+   .fontsty{
+     font-size: 14px;
+     font-weight: 400;
+   }
+   .nofontsty{
+     font-size: 16px;
+     font-weight: 700
+   }
 #discover {
   width: 100vw;
   height: 800px;
@@ -108,11 +124,13 @@ export default {
   a {
     margin: 8px;
   }
+  span{
+    display: inline-block;
+    width: 70px;
+  }
+    
 }
-.discover-contain-bottom-header :first-child {
-  font-weight: bold;
-  font-size: 16px;
-}
+
 .backIcon {
   position: absolute;
   left: 2vw;

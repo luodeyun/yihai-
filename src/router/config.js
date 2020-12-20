@@ -91,9 +91,11 @@ export default {
             path:'/discover',
             name:'discover',
             component:()=>import('@/components/discover/discover'),
-            redirect: '/discover/details',
+           
             meta: {
-                requireAuth: true // 配置此条，进入页面前判断是否需要登陆
+                requireAuth: true ,// 配置此条，进入页面前判断是否需要登陆
+                keepAlive:true
+                
               },
             children:[
                 {
@@ -133,7 +135,13 @@ export default {
             meta: {
                 requireAuth: true // 配置此条，进入页面前判断是否需要登陆
               },
-        }
+        },
+        {
+            path:'/recommendxq',
+            name:'recommendxq',
+            component:()=>import('@/components/discover/recommendxq'),
+           
+        },
 
     ]
 }

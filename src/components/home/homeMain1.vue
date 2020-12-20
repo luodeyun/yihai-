@@ -3,8 +3,8 @@
       <div>
            <div class='daohang' @click='changesty'>  
                <router-link to='/main/home/homemain'  class='chinacar' style='color:#000;backgroundColor:#fff; borderRadius:5px 5px 5px 5px' ref>国内租车</router-link>
-               <router-link to='/main/mine'  class='chinacar'>高端专车</router-link>
-               <router-link to='/main/mine'  class="chinacar">超值套餐</router-link>
+               <router-link to=''  class='chinacar'>高端专车</router-link>
+               <router-link to=''  class="chinacar">超值套餐</router-link>
                <router-link to='/main/home/sea'  class="chinacar" ref='ss'>海外租车</router-link>
          </div> 
          <router-view ></router-view>

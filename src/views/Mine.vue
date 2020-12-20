@@ -3,13 +3,13 @@
     <div class="mine-header">
       <span class="mine-header-img"> <img src="@/assets/img/touxiang.png" alt="" class='touxiang'> </span>
       <div class="mine-header-rigth">
-        <span class="mine-header-right-phone">{{this.$store.state.userPhone}}</span>
+        <span class="mine-header-right-phone">{{userphone}}</span>
         <div class="mine-header-right-vip">
           <span>普通会员</span><span>待认证</span>
         </div>
        
       </div>
-      <span class='denglu' @click='denglu'>登录</span>
+      <span class='denglu' @click='denglu'>{{changeuser}}</span>
     </div>
     <div class="mine-contain">
       <div class="mine-contain-first">我的订单</div>
@@ -127,11 +127,34 @@ export default {
     return {};
     
   },
+  beforeCreate () {
+    
+  },
+  computed:{
+    userphone(){
+     if(this.$store.state.userPhone){
+       return      this.$store.state.userPhone
+
+     }else{
+       return  '请您登录哦'
+     }
+     },
+     changeuser(){
+       if(this.$store.state.userPhone){
+         return '切换用户'
+       }else{
+          return '登录'
+       }
+     }
+  },
   methods:{
       denglu(){
-        this.$router.push('/login')
+        this.$router.push('/login'),
+         this.$store.commit('setPhone',null)
+          this.$store.commit('setName',null)
       }
-    }
+    },
+    
 };
 </script>
  <style lang='less' scoped>
@@ -267,6 +290,7 @@ export default {
   border: 1px solid #fff;
   text-align: center;
   line-height: 5vh;
+  font-size: 12px;
   border-radius:3px;
   background-color: #23B7B7; 
 }

@@ -6,7 +6,7 @@ export function request(config) {
     });
     instance1.interceptors.request.use(
         config => {
-            console.log("请求拦截器", localStorage.getItem("tokenKey"));
+           
             if(localStorage.getItem("tokenKey")){
             return config
         }
@@ -19,7 +19,7 @@ export function request(config) {
         res => {
             if(res.data.tokenKey){  
                 localStorage.setItem("tokenKey", res.data.tokenKey);
-                console.log('响应拦截器');
+             
                 return res.data
                 // store.commit('sertoken',res.data.tokenKey )
             }else{

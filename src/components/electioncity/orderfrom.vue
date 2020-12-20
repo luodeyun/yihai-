@@ -41,54 +41,54 @@
                          <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
                         <span style='margin-left:2vw '>行无忧(48元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="xingwuyou"></van-checkbox></div>
                   </div>
                    <div class='container-top-con-two-one'>
                     <div >
                         <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
                         <span style='margin-left:2vw'>免除加油服务费(50元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="mianjiayou"></van-checkbox></div>
                   </div>
                    <div class='container-top-con-two-one'>
                     <div >
                           <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
                         <span style='margin-left:2vw'>基础补充保障(105元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="jichu"></van-checkbox></div>
                   </div>
                   <div class='container-top-con-two-one'>
                     <div >
                       <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
                         <span style='margin-left:2vw'>行高级补充保障(144元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="gaoji"></van-checkbox></div>
                   </div>
                   <div class='container-top-con-two-one'>
                     <div >
                           <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
                         <span style='margin-left:2vw'>尊享补充保障(189元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="zunxiang"></van-checkbox></div>
                   </div>
                   <div class='container-top-con-two-one'>
                     <div >
                            <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
                         <span style='margin-left:2vw'>租手机支架(4元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="zuphone"></van-checkbox></div>
                   </div>
                    <div class='container-top-con-two-one'>
                     <div >
                           <span><img src="@/assets/img/wenhao.png" alt="" class='wenhao'></span>
-                        <span style='margin-left:2vw'>购买手机支架</span>
+                        <span style='margin-left:2vw'>购买手机支架(15元)</span>
                     </div>
-                    <div style='margin-right:2vw'><van-checkbox v-model="checked"></van-checkbox></div>
+                    <div style='margin-right:2vw'><van-checkbox v-model="goumai"></van-checkbox></div>
                   </div>
                  
                 </div>
              </div>
-             <div class='bottom'><button>提交订单</button>
+             <div class='bottom'><button>提交订单 共：￥{{totle}}</button>
 </div>
              
      </div>
@@ -103,15 +103,24 @@ export default {
       CarTypeItem: "", //汽车图片地址
       CommonDescription: "", //汽车描述
       CarName: "",
-      FloorPrice: "",
-      changetitle: "订单详情"
+      FloorPrice: 0,
+      FloorPrice2: 2,
+      changetitle: "订单详情",
+      xingwuyou:false,
+      mianjiayou:false,
+      jichu:false,
+      gaoji:false,
+      zunxiang:false,
+      zuphone:false,
+      goumai:false
+
     };
   },
   mounted() {
-    this.FloorPrice = this.$route.params.item.FloorPrice;
-    this.CarTypeItem = this.$route.params.item.CarTypeItem.SmallImagePath;
-    this.CarName = this.$route.params.item.CarTypeItem.Name;
-    this.CommonDescription = this.$route.params.item.CommonDescription;
+    this.FloorPrice = this.$route.query.item.FloorPrice;
+    this.CarTypeItem = this.$route.query.item.CarTypeItem.SmallImagePath;
+    this.CarName = this.$route.query.item.CarTypeItem.Name;
+    this.CommonDescription = this.$route.query.item.CommonDescription;
     window.addEventListener("scroll", () => {
       if (document.documentElement.scrollTop >= 100) {
         this.changetitle = this.CarName;
@@ -120,6 +129,7 @@ export default {
       }
     });
   },
+  
   methods: {
     back() {
       this.$router.go(-1);
@@ -140,7 +150,73 @@ export default {
     },
     endmonth() {
       return this.$store.state.endmonth;
-    }
+    },
+  
+     totle(){
+       console.log('totle');
+       
+       let x =0 
+       let m= 0
+       let j =0
+       let g =0
+       let zx =0
+       let zp =0
+       let gm =0
+       if(this.xingwuyou==true){
+           x = 48;
+         }
+         else if(this.xingwuyou==false){
+         x=0
+       }
+
+       if(this.mianjiayou==true){
+           m = 50;
+         }
+         else if(this.mianjiayou==false){
+         m=0
+       }
+
+         if(this.jichu==true){
+           j = 105;
+         }
+         else if(this.jichu==false){
+        j=0
+       }
+
+      
+        
+        if(this.gaoji==true){
+           g = 144;
+         }
+         else if(this.gaoji==false){
+        g=0
+       }
+           
+        if(this.zunxiang==true){
+           zx = 189;
+         }
+         else if(this.zunxiang==false){
+          zx=0
+         }
+
+          if(this.zuphone==true){
+           zp = 4;
+         }
+         else if(this.zuphone==false){
+          zp=0
+         }
+           if(this.goumai==true){
+           gm = 15;
+         }
+         else if(this.zuphone==false){
+          gm=0
+         }
+     
+     
+     return this.FloorPrice + x + m+j+g+zx+zp+gm
+   
+     
+  },
   }
 };
 </script>

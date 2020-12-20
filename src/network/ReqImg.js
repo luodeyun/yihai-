@@ -14,6 +14,11 @@ export function recommend(){
         methods:'get',
         url:'/recommendyj',
     })
-   
-    
+}
+export function recommendxq(id){
+    return request({
+        methods:'get',
+        url:'/recommendxq',
+        params:{id}
+    })
 }

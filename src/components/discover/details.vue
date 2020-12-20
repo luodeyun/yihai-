@@ -23,7 +23,7 @@
 <script>
 import { reqdiscover } from "@/network/Reqdiscover.js";
 export default {
-  name:'das',
+  name:'det',
   components: {},
   data() {
     return {

@@ -6,9 +6,9 @@
                <div style='height:90px'>
                    <img :src="`${item.imgUrl}`" alt="" style='height:90px' class='details-contain-img   ' >
                    <p class='titlesty'>{{item.summary}}</p>
-                  <span class='spansty'>
-                   <span class='imgstyle'><img src="@/assets/img/8edc44a9873944e6b24d50f86f9bfab8.jpg" alt="" ></span>    
-                   <p class='futitle'>驾驭-淘涂涂旅行</p>
+                  <span class='spansty' v-if='item.element'>
+                   <span class='imgstyle'><img :src="item.element.headImgUrl" alt="" ></span>    
+                   <p class='futitle'>{{item.element.gigi}}</p>
                   <span class='imgstyle'><img src="@/assets/img/sadrasdasd.png" alt="" ></span>
                    <p class='futitle'>{{item.pageView}}</p>
                   </span> 
@@ -21,9 +21,9 @@
                <div>
                    <img :src="`${item.imgUrl}`" alt="" style='borderRadius:8px' class='details-contain-img' >
                    <p class='titlesty'>{{item.summary}}</p>
-                  <span class='spansty'>
-                   <span class='imgstyle'><img src="@/assets/img/8edc44a9873944e6b24d50f86f9bfab8.jpg" alt="" ></span>    
-                   <p class='futitle'>驾驭-淘涂涂旅行</p>
+                  <span class='spansty' v-if='item.element'>
+                   <span class='imgstyle'><img :src="item.element.headImgUrl" alt="" ></span>    
+                   <p class='futitle'>{{item.element.gigi}}</p>
                   <span class='imgstyle'><img src="@/assets/img/sadrasdasd.png" alt="" ></span>
                    <p class='futitle'>{{item.pageView}}</p>
                   </span> 
@@ -37,9 +37,9 @@
                <div>
                    <img :src="`${item.imgUrl}`" alt="" style='borderRadius:8px' class='details-contain-img' >
                    <p class='titlesty'>{{item.summary}}</p>
-                  <span class='spansty'>
-                   <span class='imgstyle'><img src="@/assets/img/a274f1880e184e92a7441cfc6d127ff2.jpg" alt="" ></span>    
-                   <p class='futitle'>驾驭-淘涂涂旅行</p>
+                  <span class='spansty' v-if='item.element'>
+                   <span class='imgstyle'><img :src="item.element.headImgUrl" alt="" ></span>    
+                   <p class='futitle'>{{item.element.gigi}}</p>
                <span class='imgstyle'><img src="@/assets/img/sadrasdasd.png" alt="" ></span>
                    <p class='futitle'>{{item.pageView}}</p>
                   </span> 
@@ -81,11 +81,7 @@ export default {
        
     });
   },
-  methods: {
-      
-    
-      
-    
+  methods: {           
     back() {
       let timer;
       timer = setInterval(function() {
@@ -100,7 +96,8 @@ export default {
       }, 30);
     },
     chakan(id) {
-        console.log(id);
+      this.$router.push({path:'/recommendxq',query:{id}})
+        
         
     },
     Reqrecommend(){  

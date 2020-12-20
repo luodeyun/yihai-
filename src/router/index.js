@@ -11,7 +11,7 @@ router.beforeEach((to,from,next)=>{
     console.log(to.meta.requireAuth,'222');
     if(to.meta.requireAuth){
         if(localStorage.getItem('tokenKey')){
-            console.log('有token');
+           
             next()
         }
       else{

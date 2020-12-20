@@ -2,7 +2,7 @@
   <div id = 'homeswiper'>
     <slot name='searchbar'>
        <transition name="fade" >
-          <van-search v-if='searchTf' v-model="searchvalue" placeholder="请输入您想要查找的车型品牌"  class='topBarSearch'  left   background="#000000" :label='wuhan'/>
+          <van-search v-if='searchTf' v-model="searchvalue" placeholder="请输入您想要查找的车型品牌"  class='topBarSearch'  left   background="#000000" :label='initVal'/>
        </transition>
     </slot>
     <slot name='buttonbar'>    
@@ -26,6 +26,10 @@ export default {
       wuhan: "武汉",
       searchTf: false
     };
+  },computed: {
+    initVal(){
+    return  this.$store.state.initval.name
+    }
   },
   mounted() {
     getimg().then(res => {
@@ -35,6 +39,7 @@ export default {
       window.addEventListener("scroll", this.handle);
     });
   },
+
   methods: {
     handle() {
       if (document.documentElement.scrollTop >= 100) {

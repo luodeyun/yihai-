@@ -110,12 +110,13 @@ export default {
       let username = this.username; //手机号
       let password = this.password; //密码
       let code = this.code; //验证码
-  
+      
       let re_password=this.re_password
       registerdown(nick_name,username, password, re_password, code).then(res => {
         if (res.success == true) {    
-          console.log('2');
-                                     
+      
+            this.$store.commit('setPhone',username)
+          this.$store.commit('setName',nick_name)                          
           this.$router.push({ name: "homemain" });
           this.$notify({ type: "success", message: res.message });
         } else if (res.err == true) {

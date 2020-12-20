@@ -138,13 +138,13 @@ export default {
     diyu(){ //降序
       this.sortType = true
     },
-    playauto(a,b){  //带参跳闸un视频页面
-      this.$router.push({name:'playauto',params:{id:a,title:b}})
+    playauto(a,b){  //带参跳闸视频页面
+      this.$router.push({path:'/playauto',query:{id:a,title:b}})
     } ,
     order(item){
      this.$router.push({
-       name:"orderfrom",
-       params:{
+       path:"/orderfrom",
+       query:{
         item:item 
        }
       })
